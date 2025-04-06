@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Cohérence cardiaque - Soleil</title>
+  <title>Cohérence cardiaque – Lever du soleil</title>
   <style>
     html, body {
       margin: 0;
@@ -10,37 +10,31 @@
       height: 100%;
       overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
-      background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0') no-repeat center center;
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center center;
       background-size: cover;
-      color: white;
       text-align: center;
+      color: white;
     }
 
     h1 {
       margin-top: 30px;
+      font-size: 2.5em;
       text-shadow: 2px 2px 5px #000;
     }
 
     #startBtn {
       margin: 20px auto;
-      padding: 12px 28px;
+      padding: 14px 30px;
       font-size: 1.2em;
       border: none;
-      border-radius: 25px;
+      border-radius: 30px;
       background-color: rgba(255, 255, 255, 0.85);
       color: #333;
       cursor: pointer;
-      transition: 0.3s;
     }
 
     #startBtn:hover {
       background-color: #eee;
-    }
-
-    #container {
-      position: relative;
-      width: 100%;
-      height: 70%;
     }
 
     #sun {
@@ -49,29 +43,8 @@
       height: 80px;
       background: radial-gradient(circle, #FFD700, #FFA500);
       border-radius: 50%;
+      box-shadow: 0 0 25px rgba(255, 200, 0, 0.9);
       opacity: 0;
-      transition: opacity 1s;
-      box-shadow: 0 0 25px rgba(255, 200, 0, 0.8);
-    }
-
-    #circle-guide {
-      position: absolute;
-      width: 300px;
-      height: 150px;
-      border: 2px dashed rgba(255,255,255,0.3);
-      border-radius: 50%;
-      top: 25%;
-      left: 50%;
-      transform: translateX(-50%);
-      pointer-events: none;
-    }
-
-    #message {
-      font-size: 1.6em;
-      margin-top: 10px;
-      text-shadow: 1px 1px 4px #000;
-      opacity: 0;
-      transition: opacity 1s;
     }
 
     audio {
@@ -80,13 +53,9 @@
   </style>
 </head>
 <body>
-  <h1>Exercice de cohérence cardiaque</h1>
+  <h1>Cohérence cardiaque – Soleil & Mer</h1>
   <button id="startBtn">Commencer la séance</button>
-  <div id="container">
-    <div id="circle-guide"></div>
-    <div id="sun"></div>
-  </div>
-  <div id="message">Inspirez...</div>
+  <div id="sun"></div>
 
   <audio id="musique" loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/10/11/audio_7c0c452d4b.mp3?filename=meditation-soft-ambient-121110.mp3" type="audio/mp3">
@@ -94,51 +63,17 @@
   </audio>
 
   <script>
-    const startBtn = document.getElementById('startBtn');
-    const sun = document.getElementById('sun');
-    const message = document.getElementById('message');
-    const audio = document.getElementById('musique');
+    const startBtn = document.getElementById("startBtn");
+    const sun = document.getElementById("sun");
+    const audio = document.getElementById("musique");
 
     let angle = 0;
     let direction = 1;
 
-    function animateSun() {
-      const radiusX = 150;
-      const radiusY = 75;
+    function moveSun() {
+      const radiusX = 200;
+      const radiusY = 80;
       const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight * 0.5;
+      const centerY = window.innerHeight * 0.65;
 
-      const radians = angle * Math.PI / 180;
-      const x = centerX + radiusX * Math.cos(radians);
-      const y = centerY + radiusY * Math.sin(radians);
-
-      sun.style.left = `${x - 40}px`;
-      sun.style.top = `${y - 40}px`;
-
-      if (angle === 0) {
-        message.textContent = "Inspirez profondément...";
-      }
-      if (angle === 180) {
-        message.textContent = "Expirez lentement...";
-      }
-
-      angle += direction;
-      if (angle > 180 || angle < 0) {
-        direction *= -1;
-      }
-
-      requestAnimationFrame(animateSun);
-    }
-
-    startBtn.addEventListener('click', () => {
-      startBtn.style.display = 'none';
-      sun.style.opacity = 1;
-      message.style.opacity = 1;
-      audio.play().catch(() => {
-        alert("La lecture de la musique a été bloquée par le navigateur. Cliquez à nouveau si besoin.");
-      });
-      animateSun();
-    });
-  </script>
-</body>
-</html>
+      const
