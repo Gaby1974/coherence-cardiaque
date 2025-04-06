@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Cohérence cardiaque – Lever du soleil</title>
+  <title>Cohérence cardiaque – Soleil</title>
   <style>
     html, body {
       margin: 0;
@@ -39,12 +39,24 @@
 
     #sun {
       position: absolute;
-      width: 80px;
-      height: 80px;
+      width: 60px;
+      height: 60px;
       background: radial-gradient(circle, #FFD700, #FFA500);
       border-radius: 50%;
-      box-shadow: 0 0 25px rgba(255, 200, 0, 0.9);
+      box-shadow: 0 0 20px rgba(255, 200, 0, 0.9);
       opacity: 0;
+    }
+
+    #circle-guide {
+      position: absolute;
+      width: 250px;
+      height: 125px;
+      border: 1px dashed rgba(255,255,255,0.15);
+      border-radius: 50%;
+      top: 35%;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
     }
 
     audio {
@@ -55,10 +67,11 @@
 <body>
   <h1>Cohérence cardiaque – Soleil & Mer</h1>
   <button id="startBtn">Commencer la séance</button>
+  <div id="circle-guide"></div>
   <div id="sun"></div>
 
   <audio id="musique" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/10/11/audio_7c0c452d4b.mp3?filename=meditation-soft-ambient-121110.mp3" type="audio/mp3">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_d6cfa0e7b5.mp3?filename=relaxing-soft-piano-ambient-110417.mp3" type="audio/mp3">
     Votre navigateur ne supporte pas la lecture audio.
   </audio>
 
@@ -71,9 +84,32 @@
     let direction = 1;
 
     function moveSun() {
-      const radiusX = 200;
-      const radiusY = 80;
+      const radiusX = 125;
+      const radiusY = 62.5;
       const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight * 0.65;
+      const centerY = window.innerHeight * 0.55;
 
-      const
+      const radians = angle * Math.PI / 180;
+      const x = centerX + radiusX * Math.cos(radians);
+      const y = centerY - radiusY * Math.sin(radians);
+
+      sun.style.left = `${x - 30}px`;
+      sun.style.top = `${y - 30}px`;
+
+      angle += 0.5 * direction; // 0.5° par frame = ~6s montée ou descente
+      if (angle >= 180 || angle <= 0) direction *= -1;
+
+      requestAnimationFrame(moveSun);
+    }
+
+    startBtn.addEventListener("click", () => {
+      startBtn.style.display = "none";
+      sun.style.opacity = 1;
+      audio.play().catch(() => {
+        alert("Cliquez à nouveau pour activer le son si le navigateur le bloque.");
+      });
+      moveSun();
+    });
+  </script>
+</body>
+</html>
