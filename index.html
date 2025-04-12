@@ -7,7 +7,6 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background-image: url('https://cdn.pixabay.com/photo/2020/03/11/15/06/spa-4921279_1280.jpg'); /* galets violets */
       background-size: cover;
       background-position: center;
       color: white;
@@ -15,157 +14,35 @@
     }
 
     h1 {
-      margin-top: 50px;
-      text-shadow: 2px 2px 4px #000;
+      margin-top: 60px;
+      text-shadow: 2px 2px 4px #000000;
     }
 
     #menuBtn {
-      font-size: 28px;
-      background-color: #e0f0ff;
-      color: #000;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
       position: absolute;
-      top: 30px;
+      top: 20px;
       left: 50%;
       transform: translateX(-50%);
+      background-color: #87CEEB;
+      border: none;
+      padding: 10px 15px;
+      font-size: 18px;
+      border-radius: 12px;
+      cursor: pointer;
     }
 
     #menuPanel {
       display: none;
-      background: rgba(255, 255, 255, 0.85);
-      color: #000;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 400px;
-      margin: 20px auto;
+      margin-top: 80px;
     }
 
     .menu-section {
       margin-bottom: 20px;
     }
 
-    button.option {
+    button {
       margin: 5px;
       padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      background-color: #d0e8ff;
-    }
-
-    #startBtn {
-      margin-top: 30px;
-      padding: 15px 30px;
-      font-size: 20px;
+      font-size: 16px;
       border-radius: 10px;
-      border: none;
-      background-color: #add8e6;
-      color: #000;
-      cursor: pointer;
-    }
-
-    #animationZone {
-      margin-top: 50px;
-      height: 300px;
-      position: relative;
-    }
-
-    .dauphin {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 80px;
-      transition: transform 6s ease-in-out;
-    }
-  </style>
-</head>
-<body>
-  <h1>Une pause relaxation bien méritée</h1>
-
-  <button id="menuBtn">☰</button>
-
-  <div id="menuPanel">
-    <div class="menu-section">
-      <h3>Choix de l’image</h3>
-      <button class="option" onclick="setImage('galets')">Galets violets</button>
-      <button class="option" onclick="setImage('plage')">Plage</button>
-      <button class="option" onclick="setImage('montagne')">Montagne</button>
-      <button class="option" onclick="setImage('dauphin')">Dauphin sur la mer</button>
-    </div>
-
-    <div class="menu-section">
-      <h3>Choix de la musique</h3>
-      <button class="option" onclick="setMusic('1')">Musique douce 1</button>
-      <button class="option" onclick="setMusic('2')">Musique douce 2</button>
-      <button class="option" onclick="setMusic('3')">Musique douce 3</button>
-      <button class="option" onclick="setMusic('4')">Musique douce 4</button>
-    </div>
-  </div>
-
-  <button id="startBtn" onclick="startSession()">Commencer la séance</button>
-
-  <div id="animationZone"></div>
-
-  <audio id="audio" loop></audio>
-
-  <script>
-    let imageChoice = 'galets';
-    let musicChoice = '';
-
-    const menuBtn = document.getElementById("menuBtn");
-    const menuPanel = document.getElementById("menuPanel");
-    const audio = document.getElementById("audio");
-
-    menuBtn.onclick = () => {
-      menuPanel.style.display = menuPanel.style.display === "none" ? "block" : "none";
-    };
-
-    function setImage(choice) {
-      imageChoice = choice;
-    }
-
-    function setMusic(choice) {
-      musicChoice = choice;
-    }
-
-    function startSession() {
-      menuPanel.style.display = "none";
-      if (musicChoice) {
-        audio.src = `https://cdn.pixabay.com/audio/2023/02/03/audio_2e338e9d8e.mp3`; // douce musique libre
-        audio.play();
-      }
-      if (imageChoice === 'dauphin') {
-        document.body.style.backgroundImage = "url('https://cdn.pixabay.com/photo/2016/11/29/06/15/beach-1867271_1280.jpg')";
-        showDauphin();
-      } else if (imageChoice === 'plage') {
-        document.body.style.backgroundImage = "url('https://cdn.pixabay.com/photo/2015/03/26/10/01/beach-690034_1280.jpg')";
-      } else if (imageChoice === 'montagne') {
-        document.body.style.backgroundImage = "url('https://cdn.pixabay.com/photo/2020/11/03/20/04/alps-5710474_1280.jpg')";
-      } else {
-        document.body.style.backgroundImage = "url('https://cdn.pixabay.com/photo/2020/03/11/15/06/spa-4921279_1280.jpg')";
-      }
-    }
-
-    function showDauphin() {
-      const zone = document.getElementById("animationZone");
-      zone.innerHTML = "";
-
-      const dauphin = document.createElement("img");
-      dauphin.src = "https://cdn.pixabay.com/photo/2013/07/13/10/25/dolphin-157818_960_720.png";
-      dauphin.className = "dauphin";
-      zone.appendChild(dauphin);
-
-      let angle = 0;
-      setInterval(() => {
-        angle += Math.PI / 30;
-        const x = 150 + 100 * Math.cos(angle);
-        const y = 100 - 80 * Math.sin(angle);
-        dauphin.style.transform = `translate(${x}px, ${y}px)`;
-      }, 200);
-    }
-  </script>
-</body>
-</html>
+      border:
