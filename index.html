@@ -1,32 +1,101 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Thème Dauphin - Fond seul</title>
+  <meta charset="UTF-8" />
+  <title>Thème Dauphin - Relaxation</title>
   <style>
-    body {
+    /* Mise en page globale */
+    html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
+    }
+    body {
+      /* Fond d’écran : mer au coucher de soleil avec palmiers */
       background-image: url('https://cdn.pixabay.com/photo/2016/11/29/10/07/beach-1867285_1280.jpg');
       background-size: cover;
       background-position: center;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       font-family: Arial, sans-serif;
       color: white;
-      text-shadow: 2px 2px 4px #000;
+      overflow: hidden;
+      position: relative;
     }
-
     h1 {
-      background-color: rgba(0, 0, 0, 0.4);
-      padding: 20px;
+      text-align: center;
+      margin-top: 40px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+    }
+    /* Bouton "Commencer la séance" */
+    #startBtn {
+      display: block;
+      margin: 30px auto;
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #4ABDAC;
+      color: #000;
+      border: none;
       border-radius: 15px;
+      cursor: pointer;
+    }
+    /* Style du dauphin */
+    #dolphin {
+      position: absolute;
+      width: 100px;
+      height: auto;
+      /* Position de départ près du bas, à gauche */
+      bottom: 10px;
+      left: 0;
+      opacity: 0; /* Caché au départ */
+    }
+    /* Animation "jump" : arc de cercle de 12 secondes total 
+       0% : point de départ
+       50% : à l'apogée (6 secondes)
+       100% : retour au sol (6 secondes) */
+    @keyframes jump {
+      0% {
+        transform: translate(0, 0);
+        opacity: 0.8;
+      }
+      50% {
+        transform: translate(200px, -200px);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(400px, 0);
+        opacity: 0.8;
+      }
+    }
+    /* Appliquer l'animation au dauphin */
+    .animateDolphin {
+      animation: jump 12s ease-in-out infinite;
     }
   </style>
 </head>
 <body>
-  <h1>Une pause relaxation bien méritée - Thème Dauphin</h1>
+  <h1>Thème Dauphin - Relaxation</h1>
+  <button id="startBtn">Commencer la séance</button>
+  <img id="dolphin" src="https://cdn.pixabay.com/photo/2017/01/31/20/16/dolphin-2027635_1280.png" alt="Dauphin">
+
+  <!-- Musique douce avec sons de dauphins (libre de droits) -->
+  <audio id="musicPlayer" loop>
+    <source src="https://cdn.pixabay.com/audio/2022/03/11/audio_425d1fc210.mp3" type="audio/mp3">
+    Votre navigateur ne supporte pas la lecture audio.
+  </audio>
+
+  <script>
+    const startBtn = document.getElementById("startBtn");
+    const dolphin = document.getElementById("dolphin");
+    const musicPlayer = document.getElementById("musicPlayer");
+
+    startBtn.addEventListener("click", () => {
+      // Démarrer la musique (les navigateurs exigent une interaction utilisateur)
+      musicPlayer.play().catch(error => console.log("Erreur de lecture audio: ", error));
+      // Afficher le dauphin et lui ajouter l'animation
+      dolphin.style.opacity = 1;
+      dolphin.classList.add("animateDolphin");
+      // Masquer le bouton de démarrage
+      startBtn.style.display = "none";
+    });
+  </script>
 </body>
 </html>
